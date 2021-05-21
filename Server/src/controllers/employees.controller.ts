@@ -14,7 +14,7 @@ class EmployeeController {
       console.log(`CURRENT EMPLOYEE : ${employee.firstName}  COUNTRY CODE IS :  ${employee.country} `);
 
       axios
-        .get(`https://restcountries.eu/rest/v2/${employee.country}`)
+        .get(`https://restcountries.eu/rest/v2/alpha/${employee.country}`)
         .then(payload => {
           console.log('new payload : ', payload);
           this.resultArray.push(payload);
