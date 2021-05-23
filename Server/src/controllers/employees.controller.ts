@@ -7,17 +7,17 @@ import axios from 'axios';
 
 class EmployeeController {
   public employeeService = new employeeService();
-  resultArray = [];
 
   public getEmployees = async (req: Request, res: Response, next: NextFunction) => {
+    const resultArray = [];
+
     Employees.forEach(employee => {
       console.log(`CURRENT EMPLOYEE : ${employee.firstName}  COUNTRY CODE IS :  ${employee.country} `);
 
       axios
         .get(`https://restcountries.eu/rest/v2/alpha/${employee.country}`)
         .then(payload => {
-          console.log('new payload : ', payload);
-          this.resultArray.push(payload);
+          console.log('new payload : ', payload.data);
         })
         .catch(err => {
           if (err) {
@@ -26,7 +26,8 @@ class EmployeeController {
         });
     });
 
-    res.status(200).json({ data: this.resultArray, message: 'findAll' });
+    console.log('dkljflsdjflkdsjfklsdjfjksdhfkhsfjkdhfk', resultArray);
+    res.status(200).json({ data: resultArray, message: 'findAll' });
 
     // try {
     //   let resultArray = [];
