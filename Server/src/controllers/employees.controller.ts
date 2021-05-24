@@ -9,25 +9,37 @@ class EmployeeController {
   public employeeService = new employeeService();
 
   public getEmployees = async (req: Request, res: Response, next: NextFunction) => {
+    const result = [];
     const resultArray = [];
 
     Employees.forEach(employee => {
       console.log(`CURRENT EMPLOYEE : ${employee.firstName}  COUNTRY CODE IS :  ${employee.country} `);
 
-      axios
+      result.push(employee);
+
+      const dataDump = axios
         .get(`https://restcountries.eu/rest/v2/alpha/${employee.country}`)
         .then(payload => {
-          console.log('new payload : ', payload.data);
+          // resultArray.countryName = payload.data.name;
+          // resultArray.countryTimeZones = payload.data.timezones;
+          // resultArray.countryCurrencies = payload.data.currencies;
+          // resultArray.countryLanguages = payload.data.languages;
+
+          return payload.data;
         })
         .catch(err => {
           if (err) {
             console.log(err);
           }
         });
+
+      resultArray.push(dataDump);
+
+      console.log('FUCK ::::: ', resultArray);
     });
 
     console.log('dkljflsdjflkdsjfklsdjfjksdhfkhsfjkdhfk', resultArray);
-    res.status(200).json({ data: resultArray, message: 'findAll' });
+    res.status(200).json({ data: result, message: 'findAll' });
 
     // try {
     //   let resultArray = [];
