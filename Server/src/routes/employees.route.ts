@@ -2,9 +2,10 @@ import { Router } from 'express';
 import EmployeeController from '@controllers/employees.controller';
 // import { CreateEmployeeDto } from '@dtos/employee.dto';
 import Route from '@interfaces/routes.interface';
+import validationMiddleware from '@middlewares/validation.middleware';
 
 class EmployeeRoute implements Route {
-  public path = '/employee';
+  public path = '/api/employee';
   public router = Router();
   public employeeController = new EmployeeController();
 

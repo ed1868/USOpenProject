@@ -12,6 +12,10 @@ export default function Home(props) {
     firstName: '',
     lastName: '',
     holidayAllowance: ' ',
+    dateOfBirth:'',
+    socialInsuranceNumber: ' ',
+    workingHours: ' ',
+    numberOfChildren: ' '
   })
 
   function handleInputChange(event) {
@@ -234,30 +238,21 @@ export default function Home(props) {
     e.preventDefault();
 
     console.log(state);
-    if (state.country == "Spain") {
 
-      let newUser = {
-        country: state.country,
-        countryOfWork: state.country,
-        dateOfBirth: state.dateOfBirth,
-        firstName: state.firstName,
-        lastName: state.lastName,
-        holidayAllowance: state.holidayAllowance,
-        maritalStatus: state.maritalStatus,
-        socialInsuranceNumber: state.socialInsuranceNumber
-      }
 
-      console.log('PAYLOAD BEING SENT TO BACKEND : ', newUser);
-      api.signup(newUser)
-        .then(result => {
-          console.log('SUCCESS')
-          console.log(result);
-          props.history.push('/');
-        })
-        .catch(err => {
-          setState({ message: err.toString() });
-        })
-    }
+    let newUser = state;
+
+    console.log('PAYLOAD BEING SENT TO BACKEND : ', newUser);
+    api.signup(newUser)
+      .then(result => {
+        console.log('SUCCESS')
+        console.log(result);
+        props.history.push('/');
+      })
+      .catch(err => {
+        setState({ message: err.toString() });
+      })
+
   }
 
   function handleClick(e) {
@@ -406,7 +401,7 @@ export default function Home(props) {
         <h1 className="mt-5">Employeee Sign Up</h1>
         <div className="container mt-5">
           <label for="countrySelect" className="form-label">Please choose your country</label>
-          <form>
+          <form onSubmit={(e) => onFormSubmit(e)}>
             <select className="form-select" aria-label="Default select example" name="country" onChange={handleInputChange}>
               {countryList.map(country => {
                 return (
@@ -525,7 +520,7 @@ export default function Home(props) {
         <h1 className="mt-5">Employeee Sign Up</h1>
         <div className="container mt-5">
           <label for="countrySelect" className="form-label">Please choose your country</label>
-          <form>
+          <form onSubmit={(e) => onFormSubmit(e)}>
             <select className="form-select" aria-label="Default select example" name="country" onChange={handleInputChange}>
               {countryList.map(country => {
                 return (
@@ -632,7 +627,7 @@ export default function Home(props) {
       <h1 className="mt-5">Employeee Sign Up</h1>
       <div className="container mt-5">
         <label for="countrySelect" className="form-label">Please choose your country</label>
-        <form>
+        <form onSubmit={(e) => onFormSubmit(e)}>
           <select className="form-select" aria-label="Default select example" name="country" onChange={handleInputChange}>
             {countryList.map(country => {
               return (

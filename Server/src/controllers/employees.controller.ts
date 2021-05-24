@@ -4,53 +4,48 @@ import { Employee } from '@interfaces/employees.interface';
 import employeeService from '@services/employees.service';
 import Employees from '@/seeds/employeList';
 import axios from 'axios';
+import { Console } from 'console';
 
 class EmployeeController {
   public employeeService = new employeeService();
 
   public getEmployees = async (req: Request, res: Response, next: NextFunction) => {
-    const result = [];
-    const resultArray = [];
-
-    Employees.forEach(employee => {
+    const newinfo = [];
+    let counter = 0;
+    Employees.forEach(async employee => {
       console.log(`CURRENT EMPLOYEE : ${employee.firstName}  COUNTRY CODE IS :  ${employee.country} `);
 
-      result.push(employee);
-
-      const dataDump = axios
+      const response = await axios
         .get(`https://restcountries.eu/rest/v2/alpha/${employee.country}`)
         .then(payload => {
-          // resultArray.countryName = payload.data.name;
-          // resultArray.countryTimeZones = payload.data.timezones;
-          // resultArray.countryCurrencies = payload.data.currencies;
-          // resultArray.countryLanguages = payload.data.languages;
-
-          return payload.data;
+          // console.log(payload.data);
+          if (payload.data) {
+            counter += 1;
+            employee.country = payload.data;
+            newinfo.push(employee);
+            return newinfo;
+          }
         })
         .catch(err => {
           if (err) {
-            console.log(err);
+            console.log('ERROR : ', err);
           }
         });
 
-      resultArray.push(dataDump);
-
-      console.log('FUCK ::::: ', resultArray);
+      if (counter == Employees.length) {
+        res.status(200).json({ data: newinfo, message: 'findAll' });
+      }
     });
-
-    console.log('dkljflsdjflkdsjfklsdjfjksdhfkhsfjkdhfk', resultArray);
-    res.status(200).json({ data: result, message: 'findAll' });
-
-    // try {
-    //   let resultArray = [];
-    //   const findAllUsersData: User[] = await this.userService.findAllUser();
-
-    //   res.status(200).json({ data: findAllUsersData, message: 'findAll' });
-    // } catch (error) {
-    //   next(error);
-    // }
   };
 
+  // try {
+  //   let resultArray = [];
+  //   const findAllUsersData: User[] = await this.userService.findAllUser();
+
+  //   res.status(200).json({ data: findAllUsersData, message: 'findAll' });
+  // } catch (error) {
+  //   next(error);
+  // }
   //   public getUserById = async (req: Request, res: Response, next: NextFunction) => {
   //     try {
   //       const userId: string = req.params.id;
