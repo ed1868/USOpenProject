@@ -1,9 +1,8 @@
-import { IsEmail, IsString, IsArray } from 'class-validator';
+import { IsString, IsArray, isString } from 'class-validator';
 
 export class CreateEmployeeDto {
   @IsString()
-  public email: string;
-
+  public socialInsuranceNumber: string;
   @IsString()
   public firstName: string;
 
@@ -13,9 +12,15 @@ export class CreateEmployeeDto {
   @IsString()
   public dateOfBirth: string;
   @IsString()
-  public jobTitle: string;
+  public holidayAllowance: string;
   @IsString()
-  public company: string;
-  @IsArray()
-  public country: [];
+  public maritalStatus: string;
+  @IsString()
+  public country: string;
+  @IsString()
+  public countryOfWork: string;
+  @IsString()
+  public numberOfChildren: string;
+  @IsString()
+  public workingHours: string;
 }

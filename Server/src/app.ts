@@ -22,7 +22,7 @@ class App {
 
   constructor(routes: Routes[]) {
     this.app = express();
-    this.port = process.env.PORT || 3000;
+    this.port = process.env.PORT || 5000;
     this.env = process.env.NODE_ENV || 'development';
 
     this.connectToDatabase();
@@ -56,8 +56,9 @@ class App {
   private initializeMiddlewares() {
     if (this.env === 'production') {
       this.app.use(morgan('combined', { stream }));
-      this.app.use(cors({ origin: 'your.domain.com', credentials: true }));
+      this.app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
     } else {
+      this.app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
       this.app.use(morgan('dev', { stream }));
       this.app.use(cors({ origin: true, credentials: true }));
     }

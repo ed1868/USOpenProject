@@ -5,9 +5,13 @@ const employeeSchema: Schema = new Schema({
   firstName: String,
   lastName: String,
   dateOfBirth: String,
-  jobTitle: String,
-  company: String,
-  country: Array,
+  workingHours: String,
+  holidayAllowance: String,
+  countryOfWork: String,
+  country: String,
+  socialInsuranceNumber: String,
+  numberOfChildren: String,
+  maritalStatus: String,
 });
 
 const employeeModel = model<Employee & Document>('Employee', employeeSchema);

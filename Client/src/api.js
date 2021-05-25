@@ -9,6 +9,7 @@ const service = axios.create({
       : `http://${window.location.hostname}:5000/api`,
 
   withCredentials: true,
+  
 })
 
 const errHandler = err => {
@@ -27,7 +28,7 @@ export default {
   // This method signs up and logs in the user
   signup(userInfo) {
     return service
-      .post('/employeeSignUp', userInfo)
+      .post('/employee', userInfo)
       .then(res => {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
@@ -35,7 +36,7 @@ export default {
       })
       .catch(errHandler)
   },
-  
+
   getSecret() {
     return service
       .get('/secret')

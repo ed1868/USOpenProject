@@ -12,6 +12,7 @@ class EmployeeController {
   public getEmployees = async (req: Request, res: Response, next: NextFunction) => {
     const newinfo = [];
     let counter = 0;
+
     Employees.forEach(async employee => {
       console.log(`CURRENT EMPLOYEE : ${employee.firstName}  COUNTRY CODE IS :  ${employee.country} `);
 
@@ -35,6 +36,8 @@ class EmployeeController {
       if (counter == Employees.length) {
         res.status(200).json({ data: newinfo, message: 'findAll' });
       }
+
+      return employee;
     });
   };
 
@@ -57,16 +60,16 @@ class EmployeeController {
   //     }
   //   };
 
-  //   public createUser = async (req: Request, res: Response, next: NextFunction) => {
-  //     try {
-  //       const userData: CreateUserDto = req.body;
-  //       const createUserData: User = await this.userService.createUser(userData);
+  public createUser = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const userData: CreateEmployeeDto = req.body;
+      const createUserData: Employee = await this.employeeService.createUser(userData);
 
-  //       res.status(201).json({ data: createUserData, message: 'created' });
-  //     } catch (error) {
-  //       next(error);
-  //     }
-  //   };
+      res.status(201).json({ data: createUserData, message: 'created' });
+    } catch (error) {
+      next(error);
+    }
+  };
 
   //   public updateUser = async (req: Request, res: Response, next: NextFunction) => {
   //     try {
@@ -93,3 +96,7 @@ class EmployeeController {
 }
 
 export default EmployeeController;
+function then(arg0: (result: any) => void) {
+  throw new Error('Function not implemented.');
+}
+

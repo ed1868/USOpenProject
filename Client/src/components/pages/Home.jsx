@@ -350,7 +350,7 @@ export default function Home(props) {
               <div className="col-md-6 mt-3">
                 <label for="socialInsuranceNumber" className="form-label">Social insurance number  :</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   value={state.socialInsuranceNumber}
                   name="socialInsuranceNumber"
@@ -377,7 +377,7 @@ export default function Home(props) {
               <div className="col-md-6 mt-3">
                 <label for="socialInsuranceNumber" className="form-label">Holiday Allowance  :</label>
                 <input
-                  type="number"
+                  type="text"
                   className="form-control"
                   value={state.holidayAllowance}
                   name="holidayAllowance"

@@ -2,8 +2,12 @@ export interface Employee {
   _id: string;
   firstName: string;
   lastName: string;
+  countryOfWork: string;
   dateOfBirth: string;
-  jobTitle: string;
-  company: string;
-  country: [];
+  holidayAllowance: string;
+  maritalStatus: string;
+  country: string;
+  socialInsuranceNumber: string;
+  numberOfChildren: string;
+  workingHours: string;
 }

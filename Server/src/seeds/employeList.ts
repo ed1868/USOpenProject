@@ -6,6 +6,10 @@ const Employees = [
     jobTitle: 'Software developer',
     company: 'Test co',
     country: 'US',
+    countryCurrency: [],
+    countryLanguages: [],
+    countryTimeZones: [],
+    identifier: ' ',
   },
   {
     firstName: 'Lisa',
@@ -14,6 +18,10 @@ const Employees = [
     jobTitle: 'CTO',
     company: 'Test co',
     country: 'GBR',
+    countryCurrency: [],
+    countryLanguages: [],
+    countryTimeZones: [],
+    identifier: ' ',
   },
   {
     firstName: 'Simon',
@@ -22,6 +30,10 @@ const Employees = [
     jobTitle: 'Product manager',
     company: 'Mock industries',
     country: 'IND',
+    countryCurrency: [],
+    countryLanguages: [],
+    countryTimeZones: [],
+    identifier: ' ',
   },
   {
     firstName: 'Selina',
@@ -30,6 +42,10 @@ const Employees = [
     jobTitle: 'Software developer',
     company: 'Mock industries',
     country: 'IND',
+    countryCurrency: [],
+    countryLanguages: [],
+    countryTimeZones: [],
+    identifier: ' ',
   },
   {
     firstName: 'Tim',
@@ -38,6 +54,10 @@ const Employees = [
     jobTitle: 'Software developer',
     company: 'Mock industries',
     country: 'IND',
+    countryCurrency: [],
+    countryLanguages: [],
+    countryTimeZones: [],
+    identifier: ' ',
   },
   {
     firstName: 'Melissa',
@@ -46,6 +66,10 @@ const Employees = [
     jobTitle: 'Software developer',
     company: 'Mock industries',
     country: 'US',
+    countryCurrency: [],
+    countryLanguages: [],
+    countryTimeZones: [],
+    identifier: ' ',
   },
 ];
 

@@ -21,17 +21,18 @@ class EmployeeService {
   //     return findUser;
   //   }
 
-  //   public async createUser(userData: CreateUserDto): Promise<User> {
-  //     if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
+  public async createUser(userData: CreateEmployeeDto): Promise<Employee> {
+    if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
 
-  //     const findUser: User = await this.users.findOne({ email: userData.email });
-  //     if (findUser) throw new HttpException(409, `You're email ${userData.email} already exists`);
+    const findUser: Employee = await this.employees.findOne({ firstName: userData.firstName });
+    if (findUser) throw new HttpException(409, `You're name ${userData.firstName} already exists`);
 
-  //     const hashedPassword = await bcrypt.hash(userData.password, 10);
-  //     const createUserData: User = await this.users.create({ ...userData, password: hashedPassword });
+    console.log('THE USER DATA: ', userData);
 
-  //     return createUserData;
-  //   }
+    const createUserData: Employee = await this.employees.create({ ...userData });
+
+    return createUserData;
+  }
 
   //   public async updateUser(userId: string, userData: CreateUserDto): Promise<User> {
   //     if (isEmpty(userData)) throw new HttpException(400, "You're not userData");
